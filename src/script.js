@@ -50,8 +50,8 @@
       each(paths, function loading(path, force) {
         if (path === null) return callback()
         
-        if (!force && !/^https?:\/\//.test(path) && scriptpath) {
-          path = (path.indexOf('.js') === -1) ? scriptpath + path + '.js' : scriptpath + path;
+        if (!force && !/^https?:\/\//.test(path) && scriptpath && !path.split('|')[1]) {
+          path = (path.split('|')[0].indexOf('.js') === -1) ? scriptpath + path + '.js' : scriptpath + path;
         }
         
         if (scripts[path]) {
