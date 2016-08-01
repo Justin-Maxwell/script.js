@@ -77,7 +77,11 @@
       fn()
     }
     el.async = 1
-    el.src = urlArgs ? path + (path.indexOf('?') === -1 ? '?' : '&') + urlArgs : path;
+    el.src = urlArgs ? path.split('|')[0] + (path.indexOf('?') === -1 ? '?' : '&') + urlArgs : path.split('|')[0]
+    if (path.split('|')[1]) {
+        el.crossOrigin = 'anonymous'
+        el.integrity = path.split('|')[1]
+    }
     head.insertBefore(el, head.lastChild)
   }
 
